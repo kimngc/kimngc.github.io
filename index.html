@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kim Ngoc Thien Phan – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue:#89CFF0;
+  --blue-dark:#5AACE0;
+  --blue-deeper:#2a6fa8;
+  --cream:#EDEAE0;
+  --cream-dark:#d8d4c8;
+  --text:#1a1a1a;
+  --text-muted:#555;
+  --white:#fff;
+}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);scroll-behavior:smooth;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--cream-dark);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:60px;}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--blue-deeper);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--blue-deeper);}
+.dropdown{position:relative;}
+.dropdown-toggle{cursor:pointer;display:flex;align-items:center;gap:4px;}
+.dropdown-toggle::after{content:'▾';font-size:11px;}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 12px);left:0;background:white;border:1px solid var(--cream-dark);border-radius:10px;padding:8px 0;min-width:160px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.dropdown:hover .dropdown-menu{display:block;}
+.dropdown-menu a{display:block;padding:8px 20px;font-size:13px;color:var(--text-muted);text-decoration:none;}
+.dropdown-menu a:hover{background:var(--cream);color:var(--blue-deeper);}
+
+section{padding:100px 80px;min-height:100vh;display:flex;align-items:center;}
+section:nth-child(even){background:var(--cream);}
+
+#hero{background:linear-gradient(135deg,var(--white) 60%,var(--blue) 160%);flex-direction:column;justify-content:center;padding-top:100px;}
+.hero-tag{font-size:13px;font-weight:500;color:var(--blue-deeper);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(48px,6vw,80px);line-height:1.05;margin-bottom:16px;color:var(--text);}
+.hero-name span{color:var(--blue-deeper);}
+.hero-sub{font-size:18px;color:var(--text-muted);max-width:500px;line-height:1.6;margin-bottom:36px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{background:var(--blue-deeper);color:white;border:none;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:background .2s;}
+.btn-primary:hover{background:#1d5a8c;}
+.btn-secondary{background:transparent;color:var(--blue-deeper);border:1.5px solid var(--blue-deeper);padding:12px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s;}
+.btn-secondary:hover{background:var(--blue-deeper);color:white;}
+.hero-img-box{width:200px;height:200px;border-radius:20px;border:3px solid var(--blue-dark);overflow:hidden;flex-shrink:0;}
+.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block;}
+
+#about{flex-direction:column;align-items:flex-start;gap:40px;}
+.section-label{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue-deeper);margin-bottom:8px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,48px);margin-bottom:0;line-height:1.1;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;width:100%;align-items:start;}
+.about-text p{font-size:16px;line-height:1.8;color:var(--text-muted);margin-bottom:16px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat-card{background:white;border-radius:14px;padding:20px;border:1px solid var(--cream-dark);}
+.stat-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--blue-deeper);}
+.stat-label{font-size:13px;color:var(--text-muted);margin-top:4px;}
+
+#skills{flex-direction:column;align-items:flex-start;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%;}
+.skill-card{background:white;border-radius:16px;padding:28px;border:1px solid var(--cream-dark);}
+.skill-card h3{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--blue-deeper);}
+.tag{display:inline-block;background:var(--blue);color:var(--blue-deeper);font-size:12px;font-weight:500;padding:5px 12px;border-radius:100px;margin:3px;}
+
+#projects{flex-direction:column;align-items:flex-start;}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;}
+.project-card{background:white;border-radius:16px;padding:28px;border:1px solid var(--cream-dark);}
+.project-card h3{font-size:18px;font-weight:600;margin-bottom:8px;}
+.project-tag{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue-deeper);margin-bottom:12px;display:block;}
+.project-card p{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;}
+.project-tools{display:flex;flex-wrap:wrap;gap:6px;}
+
+#experience{flex-direction:column;align-items:flex-start;}
+.timeline{width:100%;display:flex;flex-direction:column;}
+.timeline-item{display:grid;grid-template-columns:180px 1fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--cream-dark);}
+.timeline-item:last-child{border-bottom:none;}
+.timeline-date{font-size:13px;color:var(--text-muted);font-weight:500;padding-top:4px;}
+.timeline-content h3{font-size:17px;font-weight:600;margin-bottom:4px;}
+.timeline-content .role-org{font-size:14px;color:var(--blue-deeper);font-weight:500;margin-bottom:12px;}
+.timeline-content ul{font-size:14px;color:var(--text-muted);line-height:1.8;padding-left:18px;}
+
+#hobbies{flex-direction:column;align-items:flex-start;}
+.hobby-feature{display:flex;gap:40px;width:100%;align-items:flex-start;margin-bottom:16px;}
+.hobby-feature-text{flex:1;}
+.hobby-feature-text h3{font-size:20px;font-weight:600;margin-bottom:12px;}
+.hobby-feature-text p{font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;}
+.hobby-tags{margin-top:12px;}
+.hobby-feature-gallery{flex:1;min-width:0;}
+.gallery-slider{overflow:hidden;border-radius:16px;border:1px solid var(--cream-dark);}
+.gallery-track{display:flex;transition:transform .35s ease;}
+.gallery-slide{min-width:100%;height:260px;}
+.gallery-slide img{width:100%;height:100%;object-fit:cover;}
+.gallery-dots{display:flex;gap:8px;justify-content:center;margin-top:12px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cream-dark);cursor:pointer;transition:background .2s;}
+.dot.active{background:var(--blue-deeper);}
+.gallery-nav{display:flex;gap:10px;justify-content:center;margin-top:10px;}
+
+#contact{flex-direction:column;align-items:flex-start;}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;width:100%;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+.contact-link{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted);}
+.contact-link span{color:var(--blue-deeper);font-weight:500;}
+
+footer{background:var(--text);color:var(--cream);text-align:center;padding:28px;font-size:13px;}
+
+[contenteditable]{outline:none;cursor:text;}
+[contenteditable]:hover{background:rgba(137,207,240,0.12);border-radius:4px;}
+[contenteditable]:focus{background:rgba(137,207,240,0.18);border-radius:4px;}
+
+@media(max-width:768px){
+  nav{padding:0 24px;}
+  section{padding:80px 24px;}
+  .about-grid,.skills-grid,.projects-grid,.contact-wrap{grid-template-columns:1fr;}
+  .timeline-item{grid-template-columns:1fr;gap:8px;}
+  .hobby-feature{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Kim Phan</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle">Experience</a>
+      <div class="dropdown-menu">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Work History</a>
+        <a href="#skills">Skills</a>
+      </div>
+    </li>
+    <li><a href="#hobbies">Hobbies</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div style="display:flex;align-items:center;gap:60px;width:100%;flex-wrap:wrap;">
+    <div style="flex:1;min-width:280px;">
+      <div class="hero-tag">Portfolio</div>
+      <h1 class="hero-name">Kim Ngoc<br/><span>Thien Phan</span></h1>
+      <p class="hero-sub" contenteditable="true">Business Administration student passionate about data, operations, and solving real-world problems through analysis and clear communication.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+        <a href="#projects" class="btn-secondary">View my work</a>
+      </div>
+    </div>
+    <div class="hero-img-box">
+      <img id="heroImg" src="image/profile.jpg" alt="Kim Ngoc Thien Phan"/>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Detail-oriented, data-driven,<br/>and eager to contribute.</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p contenteditable="true">I chose Business Administration because I wanted to understand how data drives real decisions. From consumer analytics to operational forecasting, I'm drawn to the idea that numbers can tell a story and that story can shape how a business grows or pivots.</p>
+      <p contenteditable="true">My experience spans data management at a family restaurant, peer mentorship, and academic research in causal inference using R. I'm currently seeking summer internship opportunities in Risk Management, Claims, or Fleet operations.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">3.61</div><div class="stat-label">GPA at CWU</div></div>
+      <div class="stat-card"><div class="stat-num">2027</div><div class="stat-label">Expected graduation</div></div>
+      <div class="stat-card"><div class="stat-num">3+</div><div class="stat-label">Years of work experience</div></div>
+      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Major academic projects</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div style="margin-bottom:48px;">
+    <div class="section-label">What I Bring</div>
+    <h2 class="section-title">Skills & Tools</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>📊 Data & Analysis</h3>
+      <div><span class="tag">Excel (Pivot Tables)</span><span class="tag">VLOOKUP</span><span class="tag">R / RStudio</span><span class="tag">OLS Regression</span><span class="tag">Python</span><span class="tag">SAP GUI</span></div>
+    </div>
+    <div class="skill-card">
+      <h3>💼 Business Tools</h3>
+      <div><span class="tag">Microsoft Office</span><span class="tag">PowerPoint</span><span class="tag">Canva</span><span class="tag">Outlook</span><span class="tag">Claude / ChatGPT</span><span class="tag">Copilot</span></div>
+    </div>
+    <div class="skill-card">
+      <h3>🧠 Core Competencies</h3>
+      <div><span class="tag">Data Accuracy</span><span class="tag">Record-keeping</span><span class="tag">Stakeholder Communication</span><span class="tag">Attention to Detail</span><span class="tag">Compliance</span><span class="tag">Teamwork</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div style="margin-bottom:48px;">
+    <div class="section-label">My Work</div>
+    <h2 class="section-title">Academic Projects</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <span class="project-tag">Supply Chain Management</span>
+      <h3>Supply Chain Case Study – Premium Food Co.</h3>
+      <p contenteditable="true">During a simulated COVID-19 ingredient shortage, I used Multi-Criteria Decision Analysis in Excel to evaluate four supplier strategies across gross margin, on-time revenue, and environmental impact. I recommended Prioritize Key Customers as the optimal approach to protect long-term relationships while maintaining profitability. Findings were delivered as a team presentation.</p>
+      <div class="project-tools"><span class="tag">Excel</span><span class="tag">MCDA</span><span class="tag">Decision Analysis</span><span class="tag">Presentation</span></div>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">Academic Research</span>
+      <h3>OLS Causal Inference: Does Experience Increase Salary?</h3>
+      <p contenteditable="true">I sourced and cleaned an employee salary dataset from Kaggle, then built regression models in R to test whether work experience causally increases salary. My baseline model confirmed a statistically significant relationship. Adding age as a control revealed that seniority partially explains the experience-salary link. Results were translated into plain-language business insights for a class audience.</p>
+      <div class="project-tools"><span class="tag">R / RStudio</span><span class="tag">OLS Regression</span><span class="tag">Excel</span><span class="tag">Kaggle</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div style="margin-bottom:48px;">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Sep 2024 – Aug 2025</div>
+      <div class="timeline-content">
+        <h3>Assistant Manager</h3>
+        <div class="role-org">Yeh Yeh's Sandwiches · Lynnwood, WA</div>
+        <ul contenteditable="true">
+          <li>Monitored financial performance via Excel Pivot Tables; contributed to $60K profit in December 2024.</li>
+          <li>Launched a Canva social media campaign that grew apparel sales by $200 in one month.</li>
+          <li>Built SMART goal frameworks and compliance checklists to improve team accountability and daily efficiency.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Sep 2022 – Jan 2023</div>
+      <div class="timeline-content">
+        <h3>Peer Mentor</h3>
+        <div class="role-org">STEM Department – Edmonds College · Lynnwood, WA</div>
+        <ul contenteditable="true">
+          <li>Planned and facilitated student engagement events for incoming students.</li>
+          <li>Provided personalized guidance on campus resources and academic pathways.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Aug 2021 – Dec 2022</div>
+      <div class="timeline-content">
+        <h3>Bookseller</h3>
+        <div class="role-org">Barnes & Noble – Edmonds College · Lynnwood, WA</div>
+        <ul contenteditable="true">
+          <li>Audited high-volume inventory using Excel cycle counts, ensuring accurate records across diverse product categories.</li>
+          <li>Tracked end-to-end shipment flow using internal inventory management systems.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+  <div style="margin-bottom:48px;">
+    <div class="section-label">Outside of Work</div>
+    <h2 class="section-title">Hobbies & Interests</h2>
+  </div>
+
+  <div class="hobby-feature">
+    <div class="hobby-feature-text">
+      <h3>Vocalist — Acoustic Series Live Band, Seattle</h3>
+      <p>Singing has been part of me since first grade. I can not really explain it, but when I am on stage, everything else just fades out. It is the one place where I feel completely like myself.</p>
+      <p>I sing as a lead vocalist for an acoustic live band here in Seattle, a team of 8 people: 3 vocalists and 5 instrumentalists on keyboard, piano, guitar, bass, and drums. We perform at private events, and honestly the show days are some of the most memorable moments of my life. The backstage chaos, the adrenaline right before we go on, the way everything just clicks when the music comes together... those are the moments I hold onto.</p>
+      <p>What I did not expect was how much being in a band would shape the way I work. Coordinating with 7 people, staying calm when things go sideways, and delivering when the pressure is high taught me things no classroom could.</p>
+      <div class="hobby-tags"><span class="tag">🎵 Live Performance</span><span class="tag">🤝 Teamwork</span><span class="tag">🎙️ Lead Vocalist</span></div>
+    </div>
+    <div class="hobby-feature-gallery">
+      <div class="gallery-slider">
+        <div class="gallery-track" id="bandTrack">
+          <div class="gallery-slide"><img id="slide0" src="image/band1.jpg" alt="Band photo 1"/></div>
+          <div class="gallery-slide"><img id="slide1" src="image/band2.jpg" alt="Band photo 2"/></div>
+          <div class="gallery-slide"><img id="slide2" src="image/band3.jpg" alt="Band photo 3"/></div>
+        </div>
+      </div>
+      <div class="gallery-dots" id="bandDots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+      </div>
+      <div class="gallery-nav">
+        <button onclick="prevSlide()" class="btn-secondary" style="padding:8px 18px;font-size:13px;">‹ Prev</button>
+        <button onclick="nextSlide()" class="btn-secondary" style="padding:8px 18px;font-size:13px;">Next ›</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hobby-feature" style="margin-top:56px;">
+    <div class="hobby-feature-text">
+      <h3>Flowers & Floral Arrangements</h3>
+      <p>I honestly can not pinpoint exactly when flowers became a thing for me. They just always have been. For the longest time I thought buying flowers was kind of wasteful — they are pretty for a few days and then they are gone, right? But somewhere along the way, getting a little older I think, my perspective completely shifted.</p>
+      <p>Now I see them differently. There is something genuinely calming about having fresh flowers around. Looking at them just makes me feel better, and I think that is enough of a reason. I do not need them to last forever to appreciate them while they are here.</p>
+      <p>Trader Joe's is my go-to spot. Good quality, great prices, and they always have something new to try. It has become a little ritual for me and honestly one of my favorite kinds of self-care.</p>
+      <div class="hobby-tags"><span class="tag">🌷 Floral Styling</span><span class="tag">🧘 Self-care</span><span class="tag">🛒 Trader Joe's Regular</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div>
+      <div class="section-label">Let's Connect</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:36px;margin-bottom:16px;">Open to summer<br/>opportunities.</h2>
+      <p style="font-size:15px;color:var(--text-muted);line-height:1.8;" contenteditable="true">I'm actively looking for full-time summer internships in Risk Management, Claims, Fleet operations, or related business fields. If you think I'd be a good fit for your team, I'd love to hear from you!</p>
+      <div class="contact-links">
+        <div class="contact-link">📧 <span contenteditable="true">kimngocthienp@gmail.com</span></div>
+        <div class="contact-link">📞 <span contenteditable="true">(206) 886-6191</span></div>
+        <div class="contact-link">📍 <span contenteditable="true">Lynnwood, WA</span></div>
+        <div class="contact-link">🎓 <span contenteditable="true">Central Washington University, B.S. Business Administration</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Kim Ngoc Thien Phan · Built with care · Lynnwood, WA</p>
+</footer>
+
+<script>
+let currentSlide = 0;
+const track = document.getElementById('bandTrack');
+const dots = document.querySelectorAll('.dot');
+
+function goToSlide(n){
+  currentSlide = n;
+  track.style.transform = `translateX(-${n*100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i===n));
+}
+function nextSlide(){ goToSlide((currentSlide+1)%3); }
+function prevSlide(){ goToSlide((currentSlide+2)%3); }
+
+function loadImageFromUrl(elementId, url){
+  const el = document.getElementById(elementId);
+  if(el) el.src = url;
+}
+
+const imgs = [
+  {id:'heroImg', src:'data:image/jpeg;base64,HERO_PLACEHOLDER'},
+  {id:'slide0', src:'data:image/jpeg;base64,SLIDE0_PLACEHOLDER'},
+  {id:'slide1', src:'data:image/jpeg;base64,SLIDE1_PLACEHOLDER'},
+  {id:'slide2', src:'data:image/jpeg;base64,SLIDE2_PLACEHOLDER'},
+];
+</script>
+</body>
+</html>
